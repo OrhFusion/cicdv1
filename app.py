@@ -1,5 +1,6 @@
 """
-This module defines a Flask web application for predicting placement packages based on CGPA.
+This module defines a Flask web application for predicting placement packages
+based on CGPA.
 """
 
 from flask import Flask, render_template, request
@@ -22,7 +23,8 @@ def index():
 def predict():
     """
     Handles the POST request for predicting the placement package based on CGPA.
-    Extracts the CGPA from the form data, makes a prediction, and renders the result on the homepage.
+    Extracts the CGPA from the form data, makes a prediction, and renders the
+    result on the homepage.
     """
     if request.method == 'POST':
         try:
@@ -49,3 +51,4 @@ def predict():
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=8080)  # Or any other available port
+
