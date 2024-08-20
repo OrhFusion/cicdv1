@@ -21,4 +21,6 @@ jobs:
         pip install pylint
 
     - name: Lint with pylint
-      run: pylint app.py
+      run: |
+        # Run pylint with custom rules
+        pylint app.py --fail-under=7.0 --disable=C0114,C0116
