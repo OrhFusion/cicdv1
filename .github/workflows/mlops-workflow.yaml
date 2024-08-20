@@ -1,0 +1,44 @@
+name: MLOps Workflow
+
+# Controls when the action will run.
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      # Step 1: Checkout the repository code
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      # Step 2: Set up Python environment
+      - name: Set up Python 3.7
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.7'
+
+      # Step 3: Install dependencies
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+
+      # Step 4: Run tests (if any)
+      - name: Run tests
+        run: |
+          # Add your testing commands here (e.g., pytest or custom scripts)
+          echo "No tests yet!"
+
+      # Step 5: Lint check for code quality
+      - name: Code linting
+        run: |
+          # Example using pylint (you can use flake8 or other linters)
+          pip install pylint
+          pylint model.py flask_app.py

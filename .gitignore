@@ -2,3 +2,4 @@
 mlruns
 model.py
 Dockerfile
+.dockerignore
