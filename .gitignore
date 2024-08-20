@@ -1,5 +1,4 @@
 .ipynb_checkpoints
 mlruns
-model.py
 Dockerfile
 .dockerignore
