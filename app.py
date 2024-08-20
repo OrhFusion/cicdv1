@@ -1,10 +1,12 @@
+"""
+This module defines a Flask web application for predicting placement packages
+based on CGPA.
+"""
 from flask import Flask, render_template, request
 import joblib
 import pandas as pd
 
-# Load the pre-trained model
 model = joblib.load('model.joblib') 
-
 app = Flask(__name__)
 
 @app.route('/')
@@ -43,7 +45,5 @@ def predict():
     return render_template('index.html')
 
 if __name__ == '__main__':
-    app.run(host='0.0.0.0', port=5000)  
-
-
+    app.run(host='0.0.0.0', port=5000)
 
