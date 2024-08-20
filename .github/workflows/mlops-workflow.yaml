@@ -41,4 +41,4 @@ jobs:
         run: |
           # Example using pylint (you can use flake8 or other linters)
           pip install pylint
-          pylint model.py flask_app.py
+          pylint app.py
