@@ -5,7 +5,7 @@ based on CGPA.
 from flask import Flask, render_template, request
 import joblib
 import pandas as pd
-model = joblib.load('model.joblib') 
+model = joblib.load('model.joblib').rstrip()
 app = Flask(__name__)
 @app.route('/')
 def index():
@@ -41,4 +41,3 @@ def predict():
     return render_template('index.html')
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=5000)
-
