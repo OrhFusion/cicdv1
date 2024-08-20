@@ -5,17 +5,14 @@ based on CGPA.
 from flask import Flask, render_template, request
 import joblib
 import pandas as pd
-
 model = joblib.load('model.joblib') 
 app = Flask(__name__)
-
 @app.route('/')
 def index():
     """
     Renders the homepage of the application.
     """
     return render_template('index.html')
-
 @app.route('/predict', methods=['POST'])
 def predict():
     """
@@ -41,9 +38,7 @@ def predict():
             return render_template(
                 'index.html', prediction="Invalid"
             )
-
     return render_template('index.html')
-
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=5000)
 
