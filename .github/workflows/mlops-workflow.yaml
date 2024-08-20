@@ -13,14 +13,13 @@ jobs:
     - name: Set up Python
       uses: actions/setup-python@v4
       with:
-        python-version: '3.8'
+        python-version: '3.8'  # Use the appropriate Python version
 
     - name: Install dependencies
       run: |
         python -m pip install --upgrade pip
-        pip install pylint
+        pip install -r requirements.txt  # Install the dependencies listed in your requirements.txt
 
     - name: Lint with pylint
       run: |
-        # Run pylint with custom rules
         pylint app.py --fail-under=7.0 --disable=C0114,C0116
