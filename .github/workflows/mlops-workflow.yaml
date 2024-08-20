@@ -1,11 +1,7 @@
-name: MLOps Workflow
+name: Build and Deploy
 
-# Controls when the action will run.
 on:
   push:
-    branches:
-      - main
-  pull_request:
     branches:
       - main
 
@@ -14,31 +10,23 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      # Step 1: Checkout the repository code
-      - name: Checkout code
-        uses: actions/checkout@v3
+    - name: Checkout code
+      uses: actions/checkout@v3
 
-      # Step 2: Set up Python environment
-      - name: Set up Python 3.7
-        uses: actions/setup-python@v4
-        with:
-          python-version: '3.7'
+    - name: Set up Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.11'
 
-      # Step 3: Install dependencies
-      - name: Install dependencies
-        run: |
-          python -m pip install --upgrade pip
-          pip install -r requirements.txt
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install -r requirements.txt
 
-      # Step 4: Run tests (if any)
-      - name: Run tests
-        run: |
-          # Add your testing commands here (e.g., pytest or custom scripts)
-          echo "No tests yet!"
+    - name: Build Docker image
+      run: docker build -t orhfusion/cgpaa_prediction .
 
-      # Step 5: Lint check for code quality
-      - name: Code linting
-        run: |
-          # Example using pylint (you can use flake8 or other linters)
-          pip install pylint
-          pylint model.py app.py
+    - name: Push Docker image
+      run: docker push docker pull orhfusion/cgpaa_prediction
+      env:
+        DOCKER_HUB_ACCESS_TOKEN: ${{ secrets.DOCKER_HUB_ACCESS_TOKEN }}
