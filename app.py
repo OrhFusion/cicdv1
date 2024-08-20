@@ -36,13 +36,16 @@ def predict():
             prediction = model.predict(data)[0]
 
             # Render the result on the homepage
-            return render_template('index.html', prediction=prediction)
+            return render_template(
+                'index.html', prediction=prediction
+            )
         except ValueError:
             # Handle cases where CGPA is not a valid float
-            return render_template('index.html', prediction="Invalid input. Please enter a valid number.")
+            return render_template(
+                'index.html', prediction="Invalid input. Please enter a valid number."
+            )
 
     return render_template('index.html')
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=8080)  # Or any other available port
-
